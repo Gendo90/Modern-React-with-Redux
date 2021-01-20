@@ -1,6 +1,6 @@
-import axios from "axios";
 import React from "react";
 import SearchBar from "./SearchBar";
+import unsplash from "../api/unsplash"
 
 class App extends React.Component {
     state = { images: [] }
@@ -8,12 +8,8 @@ class App extends React.Component {
     //needed to use an arrow function to get correct scope - otherwise scope is
     //props object for the SearchBar component where this function is called
     onSearchBarSubmit = async (term) => {
-        const response = await axios.get('https://api.unsplash.com/search/photos',
-        {
+        const response = await unsplash.get('/search/photos', {
             params: { query: term },
-            headers: {
-                Authorization: "Client-ID WG7F5urzdwVmHq4SLJUKqoJY7cBH6hHE7vqT3Ol9Nvc"
-            }
         })
 
         this.setState({ images: response.data.results })
