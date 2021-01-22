@@ -1,4 +1,6 @@
 import React from "react";
+import "./ImageList.css";
+import ImageCard from "./ImageCard";
 
 class ImageList extends React.Component {
 
@@ -9,11 +11,11 @@ class ImageList extends React.Component {
     render() {
         //uses "destructuring" to select certain properties of each element of
         //the array, which are objects
-        const img_thumbnails = this.props.images.map(({id, urls, alt_description}) =>
-            <img key={id} src={urls.thumb} alt={alt_description}/>
+        const img_thumbnails = this.props.images.map((image) =>
+            <ImageCard key={image.id} image={image}/>
         )
 
-        return <div>{img_thumbnails}</div>
+        return <div className="image-list">{img_thumbnails}</div>
     }
 }
 
